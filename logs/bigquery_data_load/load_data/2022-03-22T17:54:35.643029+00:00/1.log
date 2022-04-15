@@ -1,0 +1,34 @@
+[2022-03-22 17:54:51,773] {taskinstance.py:669} INFO - Dependencies all met for <TaskInstance: bigquery_data_load.load_data 2022-03-22T17:54:35.643029+00:00 [queued]>
+[2022-03-22 17:54:52,002] {taskinstance.py:669} INFO - Dependencies all met for <TaskInstance: bigquery_data_load.load_data 2022-03-22T17:54:35.643029+00:00 [queued]>
+[2022-03-22 17:54:52,006] {taskinstance.py:879} INFO - 
+--------------------------------------------------------------------------------
+[2022-03-22 17:54:52,008] {taskinstance.py:880} INFO - Starting attempt 1 of 1
+[2022-03-22 17:54:52,009] {taskinstance.py:881} INFO - 
+--------------------------------------------------------------------------------
+[2022-03-22 17:54:52,578] {taskinstance.py:900} INFO - Executing <Task(GoogleCloudStorageToBigQueryOperator): load_data> on 2022-03-22T17:54:35.643029+00:00
+[2022-03-22 17:54:52,631] {standard_task_runner.py:53} INFO - Started process 1441 to run task
+[2022-03-22 17:54:53,131] {logging_mixin.py:112} INFO - Running %s on host %s <TaskInstance: bigquery_data_load.load_data 2022-03-22T17:54:35.643029+00:00 [running]> DESKTOP-NRCNVOU.localdomain
+[2022-03-22 17:54:53,311] {logging_mixin.py:112} INFO - [2022-03-22 17:54:53,311] {gcp_api_base_hook.py:146} INFO - Getting connection using `google.auth.default()` since no key file is defined for hook.
+[2022-03-22 17:54:56,328] {logging_mixin.py:112} INFO - [2022-03-22 17:54:56,327] {_metadata.py:99} WARNING - Compute Engine Metadata server unavailable on attempt 1 of 3. Reason: timed out
+[2022-03-22 17:54:59,333] {logging_mixin.py:112} INFO - [2022-03-22 17:54:59,333] {_metadata.py:99} WARNING - Compute Engine Metadata server unavailable on attempt 2 of 3. Reason: timed out
+[2022-03-22 17:55:02,339] {logging_mixin.py:112} INFO - [2022-03-22 17:55:02,338] {_metadata.py:99} WARNING - Compute Engine Metadata server unavailable on attempt 3 of 3. Reason: timed out
+[2022-03-22 17:55:02,341] {logging_mixin.py:112} INFO - [2022-03-22 17:55:02,340] {_default.py:286} WARNING - Authentication failed using Compute Engine authentication due to unavailable metadata server.
+[2022-03-22 17:55:02,342] {taskinstance.py:1145} ERROR - Could not automatically determine credentials. Please set GOOGLE_APPLICATION_CREDENTIALS or explicitly create credentials and re-run the application. For more information, please see https://cloud.google.com/docs/authentication/getting-started
+Traceback (most recent call last):
+  File "/home/collid/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 983, in _run_raw_task
+    result = task_copy.execute(context=context)
+  File "/home/collid/.local/lib/python3.8/site-packages/airflow/contrib/operators/gcs_to_bq.py", line 246, in execute
+    conn = bq_hook.get_conn()
+  File "/home/collid/.local/lib/python3.8/site-packages/airflow/contrib/hooks/bigquery_hook.py", line 68, in get_conn
+    service = self.get_service()
+  File "/home/collid/.local/lib/python3.8/site-packages/airflow/contrib/hooks/bigquery_hook.py", line 82, in get_service
+    http_authorized = self._authorize()
+  File "/home/collid/.local/lib/python3.8/site-packages/airflow/contrib/hooks/gcp_api_base_hook.py", line 193, in _authorize
+    credentials = self._get_credentials()
+  File "/home/collid/.local/lib/python3.8/site-packages/airflow/contrib/hooks/gcp_api_base_hook.py", line 148, in _get_credentials
+    credentials, _ = google.auth.default(scopes=scopes)
+  File "/home/collid/.local/lib/python3.8/site-packages/google/auth/_default.py", line 488, in default
+    raise exceptions.DefaultCredentialsError(_HELP_MESSAGE)
+google.auth.exceptions.DefaultCredentialsError: Could not automatically determine credentials. Please set GOOGLE_APPLICATION_CREDENTIALS or explicitly create credentials and re-run the application. For more information, please see https://cloud.google.com/docs/authentication/getting-started
+[2022-03-22 17:55:02,347] {taskinstance.py:1189} INFO - Marking task as FAILED.dag_id=bigquery_data_load, task_id=load_data, execution_date=20220322T175435, start_date=20220322T175451, end_date=20220322T175502
+[2022-03-22 17:55:06,616] {logging_mixin.py:112} INFO - [2022-03-22 17:55:06,615] {local_task_job.py:103} INFO - Task exited with return code 1

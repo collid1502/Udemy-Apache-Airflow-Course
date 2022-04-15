@@ -1,0 +1,22 @@
+during this demo, we do the following:
+
+> create a new bucket on google cloud called: dmc-logistics-spark-bucket
+
+> then, set that bucket name into each of the PySpark scripts using the bucket='' statement
+
+> Next, we go to the Google cloud UI and look at our empty spark bucket. We're now going to load those PySpark scripts to this bucket
+
+> when we set up a data proc cluster, it will access those pyspark files from our spark bucket 
+
+> we also need to enable the cloud data proc API (via the GC web UI) ~ manages Hadoop based clusters & jobs on GCP 
+
+    follow:  
+        menu 
+        > APIs & servics 
+        > enable APIs & services 
+        > (search bar) cloud data proc API 
+        > click enable (should take a few minutes to enable) 
+        > should be good to go once enabled
+
+
+

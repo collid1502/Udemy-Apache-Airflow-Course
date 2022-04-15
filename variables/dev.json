@@ -1,0 +1,5 @@
+{
+    "project": "DMC-airflow-tutorial-demo",
+    "landing_bucket": "dmc-logistics-landing-bucket",
+    "backup_bucket": "dmc-logistics-landing-bucket-backup"
+}

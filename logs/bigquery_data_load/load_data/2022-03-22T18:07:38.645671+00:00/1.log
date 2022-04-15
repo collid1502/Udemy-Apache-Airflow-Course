@@ -1,0 +1,24 @@
+[2022-03-22 18:07:46,223] {taskinstance.py:669} INFO - Dependencies all met for <TaskInstance: bigquery_data_load.load_data 2022-03-22T18:07:38.645671+00:00 [queued]>
+[2022-03-22 18:07:46,472] {taskinstance.py:669} INFO - Dependencies all met for <TaskInstance: bigquery_data_load.load_data 2022-03-22T18:07:38.645671+00:00 [queued]>
+[2022-03-22 18:07:46,474] {taskinstance.py:879} INFO - 
+--------------------------------------------------------------------------------
+[2022-03-22 18:07:46,474] {taskinstance.py:880} INFO - Starting attempt 1 of 1
+[2022-03-22 18:07:46,475] {taskinstance.py:881} INFO - 
+--------------------------------------------------------------------------------
+[2022-03-22 18:07:46,950] {taskinstance.py:900} INFO - Executing <Task(GoogleCloudStorageToBigQueryOperator): load_data> on 2022-03-22T18:07:38.645671+00:00
+[2022-03-22 18:07:46,960] {standard_task_runner.py:53} INFO - Started process 1967 to run task
+[2022-03-22 18:07:47,346] {logging_mixin.py:112} INFO - Running %s on host %s <TaskInstance: bigquery_data_load.load_data 2022-03-22T18:07:38.645671+00:00 [running]> DESKTOP-NRCNVOU.localdomain
+[2022-03-22 18:07:47,513] {logging_mixin.py:112} INFO - [2022-03-22 18:07:47,512] {gcp_api_base_hook.py:146} INFO - Getting connection using `google.auth.default()` since no key file is defined for hook.
+[2022-03-22 18:07:47,963] {taskinstance.py:1145} ERROR - INTERNAL: No default project is specified
+Traceback (most recent call last):
+  File "/home/collid/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 983, in _run_raw_task
+    result = task_copy.execute(context=context)
+  File "/home/collid/.local/lib/python3.8/site-packages/airflow/contrib/operators/gcs_to_bq.py", line 268, in execute
+    cursor.run_load(
+  File "/home/collid/.local/lib/python3.8/site-packages/airflow/contrib/hooks/bigquery_hook.py", line 1210, in run_load
+    _split_tablename(table_input=destination_project_dataset_table,
+  File "/home/collid/.local/lib/python3.8/site-packages/airflow/contrib/hooks/bigquery_hook.py", line 2189, in _split_tablename
+    raise ValueError("INTERNAL: No default project is specified")
+ValueError: INTERNAL: No default project is specified
+[2022-03-22 18:07:47,969] {taskinstance.py:1189} INFO - Marking task as FAILED.dag_id=bigquery_data_load, task_id=load_data, execution_date=20220322T180738, start_date=20220322T180746, end_date=20220322T180747
+[2022-03-22 18:07:56,035] {logging_mixin.py:112} INFO - [2022-03-22 18:07:56,034] {local_task_job.py:103} INFO - Task exited with return code 1

@@ -1,0 +1,27 @@
+[2022-04-11 19:57:05,844] {taskinstance.py:669} INFO - Dependencies all met for <TaskInstance: bigquery_data_analytics.delete_cluster 2022-04-11T18:55:51.483552+00:00 [queued]>
+[2022-04-11 19:57:05,901] {taskinstance.py:669} INFO - Dependencies all met for <TaskInstance: bigquery_data_analytics.delete_cluster 2022-04-11T18:55:51.483552+00:00 [queued]>
+[2022-04-11 19:57:05,902] {taskinstance.py:879} INFO - 
+--------------------------------------------------------------------------------
+[2022-04-11 19:57:05,903] {taskinstance.py:880} INFO - Starting attempt 1 of 1
+[2022-04-11 19:57:05,904] {taskinstance.py:881} INFO - 
+--------------------------------------------------------------------------------
+[2022-04-11 19:57:06,683] {taskinstance.py:900} INFO - Executing <Task(DataprocClusterDeleteOperator): delete_cluster> on 2022-04-11T18:55:51.483552+00:00
+[2022-04-11 19:57:06,800] {standard_task_runner.py:53} INFO - Started process 23547 to run task
+[2022-04-11 19:57:09,246] {logging_mixin.py:112} INFO - Running %s on host %s <TaskInstance: bigquery_data_analytics.delete_cluster 2022-04-11T18:55:51.483552+00:00 [running]> DESKTOP-NRCNVOU.localdomain
+[2022-04-11 19:57:09,401] {dataproc_operator.py:620} INFO - Deleting cluster: spark-cluster-20220411T185551 in global
+[2022-04-11 19:57:11,085] {logging_mixin.py:112} INFO - [2022-04-11 19:57:11,084] {http.py:123} WARNING - Invalid JSON content from response: b'{\n  "error": {\n    "code": 403,\n    "message": "Permission denied on resource project \\"DMC-airflow-tutorial-demo.",\n    "status": "PERMISSION_DENIED",\n    "details": [\n      {\n        "@type": "type.googleapis.com/google.rpc.Help",\n        "links": [\n          {\n            "description": "Google developer console API key",\n            "url": "https://console.developers.google.com/project/\\"DMC-airflow-tutorial-demo/apiui/credential"\n          }\n        ]\n      },\n      {\n        "@type": "type.googleapis.com/google.rpc.ErrorInfo",\n        "reason": "CONSUMER_INVALID",\n        "domain": "googleapis.com",\n        "metadata": {\n          "service": "dataproc.googleapis.com",\n          "consumer": "projects/\\"DMC-airflow-tutorial-demo"\n        }\n      }\n    ]\n  }\n}\n'
+[2022-04-11 19:57:11,087] {taskinstance.py:1145} ERROR - <HttpError 403 when requesting https://dataproc.googleapis.com/v1beta2/projects/%22DMC-airflow-tutorial-demo/regions/global/clusters/spark-cluster-20220411T185551?requestId=0560a420-990f-40be-9328-47ee328fa0ae&alt=json returned "Permission denied on resource project "DMC-airflow-tutorial-demo.". Details: "[{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Google developer console API key', 'url': 'https://console.developers.google.com/project/"DMC-airflow-tutorial-demo/apiui/credential'}]}, {'@type': 'type.googleapis.com/google.rpc.ErrorInfo', 'reason': 'CONSUMER_INVALID', 'domain': 'googleapis.com', 'metadata': {'service': 'dataproc.googleapis.com', 'consumer': 'projects/"DMC-airflow-tutorial-demo'}}]">
+Traceback (most recent call last):
+  File "/home/collid/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 983, in _run_raw_task
+    result = task_copy.execute(context=context)
+  File "/home/collid/.local/lib/python3.8/site-packages/airflow/contrib/operators/dataproc_operator.py", line 64, in execute
+    self.hook.wait(self.start())
+  File "/home/collid/.local/lib/python3.8/site-packages/airflow/contrib/operators/dataproc_operator.py", line 622, in start
+    self.hook.get_conn().projects().regions().clusters().delete(  # pylint: disable=no-member
+  File "/home/collid/.local/lib/python3.8/site-packages/googleapiclient/_helpers.py", line 134, in positional_wrapper
+    return wrapped(*args, **kwargs)
+  File "/home/collid/.local/lib/python3.8/site-packages/googleapiclient/http.py", line 915, in execute
+    raise HttpError(resp, content, uri=self.uri)
+googleapiclient.errors.HttpError: <HttpError 403 when requesting https://dataproc.googleapis.com/v1beta2/projects/%22DMC-airflow-tutorial-demo/regions/global/clusters/spark-cluster-20220411T185551?requestId=0560a420-990f-40be-9328-47ee328fa0ae&alt=json returned "Permission denied on resource project "DMC-airflow-tutorial-demo.". Details: "[{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Google developer console API key', 'url': 'https://console.developers.google.com/project/"DMC-airflow-tutorial-demo/apiui/credential'}]}, {'@type': 'type.googleapis.com/google.rpc.ErrorInfo', 'reason': 'CONSUMER_INVALID', 'domain': 'googleapis.com', 'metadata': {'service': 'dataproc.googleapis.com', 'consumer': 'projects/"DMC-airflow-tutorial-demo'}}]">
+[2022-04-11 19:57:11,093] {taskinstance.py:1189} INFO - Marking task as FAILED.dag_id=bigquery_data_analytics, task_id=delete_cluster, execution_date=20220411T185551, start_date=20220411T185705, end_date=20220411T185711
+[2022-04-11 19:57:15,336] {logging_mixin.py:112} INFO - [2022-04-11 19:57:15,336] {local_task_job.py:103} INFO - Task exited with return code 1

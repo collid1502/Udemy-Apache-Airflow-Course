@@ -1,0 +1,27 @@
+[2022-03-23 08:17:49,856] {taskinstance.py:669} INFO - Dependencies all met for <TaskInstance: bigquery_data_load.load_data 2022-03-23T08:17:40.616387+00:00 [queued]>
+[2022-03-23 08:17:49,897] {taskinstance.py:669} INFO - Dependencies all met for <TaskInstance: bigquery_data_load.load_data 2022-03-23T08:17:40.616387+00:00 [queued]>
+[2022-03-23 08:17:49,898] {taskinstance.py:879} INFO - 
+--------------------------------------------------------------------------------
+[2022-03-23 08:17:49,898] {taskinstance.py:880} INFO - Starting attempt 1 of 1
+[2022-03-23 08:17:49,899] {taskinstance.py:881} INFO - 
+--------------------------------------------------------------------------------
+[2022-03-23 08:17:50,054] {taskinstance.py:900} INFO - Executing <Task(GoogleCloudStorageToBigQueryOperator): load_data> on 2022-03-23T08:17:40.616387+00:00
+[2022-03-23 08:17:50,060] {standard_task_runner.py:53} INFO - Started process 5940 to run task
+[2022-03-23 08:17:50,417] {logging_mixin.py:112} INFO - Running %s on host %s <TaskInstance: bigquery_data_load.load_data 2022-03-23T08:17:40.616387+00:00 [running]> DESKTOP-NRCNVOU.localdomain
+[2022-03-23 08:17:51,628] {taskinstance.py:1145} ERROR - <HttpError 400 when requesting https://bigquery.googleapis.com/bigquery/v2/projects/DMC-airflow-tutorial-demo/jobs?alt=json returned "Invalid project ID 'DMC-airflow-tutorial-demo'. Project IDs must contain 6-63 lowercase letters, digits, or dashes. Some project IDs also include domain name separated by a colon. IDs must start with a letter and may not end with a dash.". Details: "Invalid project ID 'DMC-airflow-tutorial-demo'. Project IDs must contain 6-63 lowercase letters, digits, or dashes. Some project IDs also include domain name separated by a colon. IDs must start with a letter and may not end with a dash.">
+Traceback (most recent call last):
+  File "/home/collid/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 983, in _run_raw_task
+    result = task_copy.execute(context=context)
+  File "/home/collid/.local/lib/python3.8/site-packages/airflow/contrib/operators/gcs_to_bq.py", line 268, in execute
+    cursor.run_load(
+  File "/home/collid/.local/lib/python3.8/site-packages/airflow/contrib/hooks/bigquery_hook.py", line 1297, in run_load
+    return self.run_with_configuration(configuration)
+  File "/home/collid/.local/lib/python3.8/site-packages/airflow/contrib/hooks/bigquery_hook.py", line 1316, in run_with_configuration
+    query_reply = jobs \
+  File "/home/collid/.local/lib/python3.8/site-packages/googleapiclient/_helpers.py", line 134, in positional_wrapper
+    return wrapped(*args, **kwargs)
+  File "/home/collid/.local/lib/python3.8/site-packages/googleapiclient/http.py", line 915, in execute
+    raise HttpError(resp, content, uri=self.uri)
+googleapiclient.errors.HttpError: <HttpError 400 when requesting https://bigquery.googleapis.com/bigquery/v2/projects/DMC-airflow-tutorial-demo/jobs?alt=json returned "Invalid project ID 'DMC-airflow-tutorial-demo'. Project IDs must contain 6-63 lowercase letters, digits, or dashes. Some project IDs also include domain name separated by a colon. IDs must start with a letter and may not end with a dash.". Details: "Invalid project ID 'DMC-airflow-tutorial-demo'. Project IDs must contain 6-63 lowercase letters, digits, or dashes. Some project IDs also include domain name separated by a colon. IDs must start with a letter and may not end with a dash.">
+[2022-03-23 08:17:51,662] {taskinstance.py:1189} INFO - Marking task as FAILED.dag_id=bigquery_data_load, task_id=load_data, execution_date=20220323T081740, start_date=20220323T081749, end_date=20220323T081751
+[2022-03-23 08:17:59,677] {logging_mixin.py:112} INFO - [2022-03-23 08:17:59,676] {local_task_job.py:103} INFO - Task exited with return code 1

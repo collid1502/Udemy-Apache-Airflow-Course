@@ -1,0 +1,15 @@
+You can use a json file to store key value pairs for variables, that airflow can allow DAGs to access.
+This allows you to change settings for more parameterised pipelines.
+
+Examples could be:
+    switching table names
+    switching between a Dev & Prod environment etc. 
+
+These variable can be imported into the airflow environment by:
+
+    > go to the UI
+    > go to Admin 
+    > go to variables 
+    > click choose file, which will allow you to select a JSON file that can be imported
+    > you will then see them on the screen after a successful import
+    > your DAGs can now make use of these variables 

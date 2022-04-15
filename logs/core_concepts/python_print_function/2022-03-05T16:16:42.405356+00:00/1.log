@@ -1,0 +1,14 @@
+[2022-03-05 16:17:39,030] {taskinstance.py:669} INFO - Dependencies all met for <TaskInstance: core_concepts.python_print_function 2022-03-05T16:16:42.405356+00:00 [queued]>
+[2022-03-05 16:17:39,078] {taskinstance.py:669} INFO - Dependencies all met for <TaskInstance: core_concepts.python_print_function 2022-03-05T16:16:42.405356+00:00 [queued]>
+[2022-03-05 16:17:39,079] {taskinstance.py:879} INFO - 
+--------------------------------------------------------------------------------
+[2022-03-05 16:17:39,080] {taskinstance.py:880} INFO - Starting attempt 1 of 1
+[2022-03-05 16:17:39,081] {taskinstance.py:881} INFO - 
+--------------------------------------------------------------------------------
+[2022-03-05 16:17:39,211] {taskinstance.py:900} INFO - Executing <Task(PythonOperator): python_print_function> on 2022-03-05T16:16:42.405356+00:00
+[2022-03-05 16:17:39,218] {standard_task_runner.py:53} INFO - Started process 5153 to run task
+[2022-03-05 16:17:39,470] {logging_mixin.py:112} INFO - Running %s on host %s <TaskInstance: core_concepts.python_print_function 2022-03-05T16:16:42.405356+00:00 [running]> DESKTOP-NRCNVOU.localdomain
+[2022-03-05 16:17:39,527] {logging_mixin.py:112} INFO - This person's name is Ron Swanson
+[2022-03-05 16:17:39,528] {python_operator.py:114} INFO - Done. Returned value was: None
+[2022-03-05 16:17:39,550] {taskinstance.py:1052} INFO - Marking task as SUCCESS.dag_id=core_concepts, task_id=python_print_function, execution_date=20220305T161642, start_date=20220305T161739, end_date=20220305T161739
+[2022-03-05 16:17:48,916] {logging_mixin.py:112} INFO - [2022-03-05 16:17:48,915] {local_task_job.py:103} INFO - Task exited with return code 0

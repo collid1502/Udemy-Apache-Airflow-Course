@@ -1,0 +1,75 @@
+using Docker to install Airflow.
+
+We’ll use the puckel/docker-airflow image which is the most popular and mature Docker image for Airflow even though it’s not the official Airflow image.
+
+Here you can have a look at the Github repository of the image: https://github.com/puckel/docker-airflow
+
+
+
+Follow these steps to install Airflow using Docker:
+
+Open a new Terminal window.
+
+Navigate to your Desktop.
+
+Clone the docker-airflow repository.
+
+git clone https://github.com/puckel/docker-airflow.git
+
+This will create a folder called docker-airflow.
+
+
+
+4. Change to the docker-airflow folder.
+
+cd docker-airflow
+
+
+
+5. Build a Docker container from the Dockerfile we just cloned.
+
+docker build --rm --build-arg AIRFLOW_DEPS="gcp,statsd,sentry" --build-arg PYTHON_DEPS="pyspark==2.4.5" --build-arg AIRFLOW_VERSION=1.10.10 -t puckel/docker-airflow .
+
+
+
+Note: If you're on Windows then before building the container you'll need to update the scripts/entrypoint.sh file since it has UNIX/OSX style EOL (end of line) format. In order to update the file, open it in your text/code editor and replace all occurrences of \n with \r\n which is the DOS/Windows style EOL format. If you have any questions regarding this just shoot me a DM.
+
+
+
+6. Run Airflow components.
+
+docker run -d -p 8080:8080 puckel/docker-airflow webserver
+
+This command will initialise the Airflow metadata database, run the scheduler and the webserver. It will forward the container port 8080 to localhost:8080 so we’ll be able to access the Airflow user interface in a browser.
+
+
+
+7. To access the bash shell of the container run the command below. You’ll need this later when we’ll run Airflow commands using the Airflow command line interface (CLI).
+
+docker exec -it <container name> /bin/bash
+
+
+
+8. To stop the Docker container, run the command below.
+
+docker stop <container name>
+
+
+
+9. To start the same Docker container run docker start.
+
+docker start <container name>
+
+This command will forward port 8080 to localhost:8080 just as before. Start the container using this command every time you come back to continue the course.
+
+
+
+If you are using VSCode then you can use the Docker Workspace plugin to open and edit files in your Docker container.
+
+Follow these steps to install and configure Docker Workspace in VSCode.
+
+Install Docker Workspace.
+
+Search and click "DockerWS: Add Folder to Workspace" using the Command Palette.
+
+Pick the container name that is running Airflow. This will open the file system of that container.

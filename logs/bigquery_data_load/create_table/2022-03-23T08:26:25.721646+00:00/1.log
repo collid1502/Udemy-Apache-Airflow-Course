@@ -1,0 +1,35 @@
+[2022-03-23 08:26:53,799] {taskinstance.py:669} INFO - Dependencies all met for <TaskInstance: bigquery_data_load.create_table 2022-03-23T08:26:25.721646+00:00 [queued]>
+[2022-03-23 08:26:53,852] {taskinstance.py:669} INFO - Dependencies all met for <TaskInstance: bigquery_data_load.create_table 2022-03-23T08:26:25.721646+00:00 [queued]>
+[2022-03-23 08:26:53,853] {taskinstance.py:879} INFO - 
+--------------------------------------------------------------------------------
+[2022-03-23 08:26:53,853] {taskinstance.py:880} INFO - Starting attempt 1 of 1
+[2022-03-23 08:26:53,854] {taskinstance.py:881} INFO - 
+--------------------------------------------------------------------------------
+[2022-03-23 08:26:54,010] {taskinstance.py:900} INFO - Executing <Task(BigQueryOperator): create_table> on 2022-03-23T08:26:25.721646+00:00
+[2022-03-23 08:26:54,020] {standard_task_runner.py:53} INFO - Started process 6740 to run task
+[2022-03-23 08:26:54,347] {logging_mixin.py:112} INFO - Running %s on host %s <TaskInstance: bigquery_data_load.create_table 2022-03-23T08:26:25.721646+00:00 [running]> DESKTOP-NRCNVOU.localdomain
+[2022-03-23 08:26:54,404] {bigquery_operator.py:252} INFO - Executing: 
+    SELECT * except (rank)
+    FROM ( 
+        SELECT 
+            *,
+            ROW_NUMBER() OVER (
+                PARTITION BY vehicle_id ORDER BY DATETIME(date, Time(hour, minute, 0)) DESC 
+            ) as rank 
+        FROM 'dmc-airflow-tutorial-demo.vehicle_analytics.history'
+        ) as latest
+    WHERE rank = 1 ;
+    
+[2022-03-23 08:26:55,058] {taskinstance.py:1145} ERROR - BigQuery job failed. Final error was: {'reason': 'invalidQuery', 'location': 'query', 'message': "Syntax error: Unexpected string literal 'dmc-airflow-tutorial-demo.vehicle_analytics.history' at [9:14]"}. The job was: {'kind': 'bigquery#job', 'etag': 'h/t8ZkRBpUEM7oSUB6JdjA==', 'id': 'dmc-airflow-tutorial-demo:europe-west2.job_IjhFjiRvyhP46P_1u7hkRV94pxDx', 'selfLink': 'https://bigquery.googleapis.com/bigquery/v2/projects/dmc-airflow-tutorial-demo/jobs/job_IjhFjiRvyhP46P_1u7hkRV94pxDx?location=europe-west2', 'user_email': 'airflow-tutorial@dmc-airflow-tutorial-demo.iam.gserviceaccount.com', 'configuration': {'query': {'query': "\n    SELECT * except (rank)\n    FROM ( \n        SELECT \n            *,\n            ROW_NUMBER() OVER (\n                PARTITION BY vehicle_id ORDER BY DATETIME(date, Time(hour, minute, 0)) DESC \n            ) as rank \n        FROM 'dmc-airflow-tutorial-demo.vehicle_analytics.history'\n        ) as latest\n    WHERE rank = 1 ;\n    ", 'destinationTable': {'projectId': 'dmc-airflow-tutorial-demo', 'datasetId': 'vehicle_analytics', 'tableId': 'latest'}, 'createDisposition': 'CREATE_IF_NEEDED', 'writeDisposition': 'WRITE_TRUNCATE', 'priority': 'INTERACTIVE', 'allowLargeResults': False, 'useLegacySql': False}, 'jobType': 'QUERY'}, 'jobReference': {'projectId': 'dmc-airflow-tutorial-demo', 'jobId': 'job_IjhFjiRvyhP46P_1u7hkRV94pxDx', 'location': 'europe-west2'}, 'statistics': {'creationTime': '1648024015910', 'startTime': '1648024015925', 'endTime': '1648024015925'}, 'status': {'errorResult': {'reason': 'invalidQuery', 'location': 'query', 'message': "Syntax error: Unexpected string literal 'dmc-airflow-tutorial-demo.vehicle_analytics.history' at [9:14]"}, 'errors': [{'reason': 'invalidQuery', 'location': 'query', 'message': "Syntax error: Unexpected string literal 'dmc-airflow-tutorial-demo.vehicle_analytics.history' at [9:14]"}], 'state': 'DONE'}}
+Traceback (most recent call last):
+  File "/home/collid/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 983, in _run_raw_task
+    result = task_copy.execute(context=context)
+  File "/home/collid/.local/lib/python3.8/site-packages/airflow/contrib/operators/bigquery_operator.py", line 262, in execute
+    job_id = self.bq_cursor.run_query(
+  File "/home/collid/.local/lib/python3.8/site-packages/airflow/contrib/hooks/bigquery_hook.py", line 910, in run_query
+    return self.run_with_configuration(configuration)
+  File "/home/collid/.local/lib/python3.8/site-packages/airflow/contrib/hooks/bigquery_hook.py", line 1342, in run_with_configuration
+    raise Exception(
+Exception: BigQuery job failed. Final error was: {'reason': 'invalidQuery', 'location': 'query', 'message': "Syntax error: Unexpected string literal 'dmc-airflow-tutorial-demo.vehicle_analytics.history' at [9:14]"}. The job was: {'kind': 'bigquery#job', 'etag': 'h/t8ZkRBpUEM7oSUB6JdjA==', 'id': 'dmc-airflow-tutorial-demo:europe-west2.job_IjhFjiRvyhP46P_1u7hkRV94pxDx', 'selfLink': 'https://bigquery.googleapis.com/bigquery/v2/projects/dmc-airflow-tutorial-demo/jobs/job_IjhFjiRvyhP46P_1u7hkRV94pxDx?location=europe-west2', 'user_email': 'airflow-tutorial@dmc-airflow-tutorial-demo.iam.gserviceaccount.com', 'configuration': {'query': {'query': "\n    SELECT * except (rank)\n    FROM ( \n        SELECT \n            *,\n            ROW_NUMBER() OVER (\n                PARTITION BY vehicle_id ORDER BY DATETIME(date, Time(hour, minute, 0)) DESC \n            ) as rank \n        FROM 'dmc-airflow-tutorial-demo.vehicle_analytics.history'\n        ) as latest\n    WHERE rank = 1 ;\n    ", 'destinationTable': {'projectId': 'dmc-airflow-tutorial-demo', 'datasetId': 'vehicle_analytics', 'tableId': 'latest'}, 'createDisposition': 'CREATE_IF_NEEDED', 'writeDisposition': 'WRITE_TRUNCATE', 'priority': 'INTERACTIVE', 'allowLargeResults': False, 'useLegacySql': False}, 'jobType': 'QUERY'}, 'jobReference': {'projectId': 'dmc-airflow-tutorial-demo', 'jobId': 'job_IjhFjiRvyhP46P_1u7hkRV94pxDx', 'location': 'europe-west2'}, 'statistics': {'creationTime': '1648024015910', 'startTime': '1648024015925', 'endTime': '1648024015925'}, 'status': {'errorResult': {'reason': 'invalidQuery', 'location': 'query', 'message': "Syntax error: Unexpected string literal 'dmc-airflow-tutorial-demo.vehicle_analytics.history' at [9:14]"}, 'errors': [{'reason': 'invalidQuery', 'location': 'query', 'message': "Syntax error: Unexpected string literal 'dmc-airflow-tutorial-demo.vehicle_analytics.history' at [9:14]"}], 'state': 'DONE'}}
+[2022-03-23 08:26:55,063] {taskinstance.py:1189} INFO - Marking task as FAILED.dag_id=bigquery_data_load, task_id=create_table, execution_date=20220323T082625, start_date=20220323T082653, end_date=20220323T082655
+[2022-03-23 08:27:03,639] {logging_mixin.py:112} INFO - [2022-03-23 08:27:03,638] {local_task_job.py:103} INFO - Task exited with return code 1
